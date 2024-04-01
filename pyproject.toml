@@ -27,3 +27,4 @@ exclude = [".git", ".ruff_cache"]
 
 line-length = 79
 target-version = "py310"
+ 

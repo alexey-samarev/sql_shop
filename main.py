@@ -13,9 +13,6 @@ def main() -> None:
         user="postgres",
         password=pas,
     )
-    db = Database(settings=settings)
-    with db() as conn:
-        conn.cursor()
 
 
 if __name__ == "__main__":
