@@ -65,7 +65,7 @@ CONSTRAINT FK_link_product_order FOREIGN KEY(product_id)
 REFERENCES product(id)
 )
 """
-def main() - None:
+def main() -> None:
     """Основная функция модуля."""
 execute_command(product_table_create)
 execute_command(rack_table_create)
@@ -75,4 +75,3 @@ execute_command(rack_product_link_create)
 
 if __name__ == "__main__":
     migrate()
-    
