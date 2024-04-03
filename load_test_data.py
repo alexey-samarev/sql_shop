@@ -28,7 +28,7 @@ rack_insert = """
 INSERT INTO rack(name)
 VALUES (%s)
 """
-rack_insert_values = [("А",), ("Б",), ("Ж",)]
+rack_insert_values = [("А",), ("Б",), ("Ж",), ("В",), ("З",)]
 
 order_insert = """
 INSERT INTO ordert(order_number, consumer_name)
@@ -49,6 +49,24 @@ product_insert_values = [
     ("Микрофон", 6),
 ]
 
+rack_product_link_insert = """
+INSERT INTO rack_product_link(rack_id, product_id, main)
+VALUES (
+    (SELECT id FROM rack WHERE rack.name == %s),
+    (SELECT id FROM product WHERE product.article == %s),
+    %s
+    )
+"""
+rack_product_link_insert_values = [
+    ("А", 1, True),
+    ("А", 2, True),
+    ("Б", 3, True),
+    ("З", 3, False),
+    ("В", 3, False),
+    ("Ж", 4, True),
+    ("Ж", 5, True),
+    ("Ж", 6, True),
+]
 
 def load() -> None:
     """Основная функция модуля."""
@@ -56,8 +74,10 @@ def load() -> None:
     execute_many_command(rack_insert, rack_insert_values)
     execute_many_command(order_insert, order_insert_values)
     execute_many_command(product_insert, product_insert_values)
+    execute_many_command(
+        rack_product_link_insert, rack_product_link_insert_values,
+    )
 
 
 if __name__ == "__main__":
     load()
-    
