@@ -19,3 +19,4 @@ settings = DatabaseSettings(
     user=env.str("POSTGRES_USER", ""),
     password=env.str("POSTGRES_PASSWORD", ""),
 )
+
